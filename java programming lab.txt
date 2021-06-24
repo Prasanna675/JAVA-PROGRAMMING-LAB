@@ -1,0 +1,615 @@
+2.	JAVA STRINGS PROGRAMS:
+
+a)	Java Program to Convert char to String and String to Char
+public class DuplicateCharacters {  
+     public static void main(String[] args) {  
+        String string1 = "Java Programming Lab";  
+        int count;  
+          
+        //Converts given string into character array  
+        char string[] = string1.toCharArray();  
+          
+        System.out.println("Duplicate characters in a given string: ");  
+        //Counts each character present in the string  
+        for(int i = 0; i <string.length; i++) {  
+            count = 1;  
+            for(int j = i+1; j <string.length; j++) {  
+                if(string[i] == string[j] && string[i] != ' ') {  
+                    count++;  
+                    //Set string[j] to 0 to avoid printing visited character  
+                    string[j] = '0';  
+                }  
+            }  
+            //A character is considered as duplicate if count > 1  
+            if(count > 1 && string[i] != '0')  
+                System.out.println(string[i]);  
+        }  
+    }  
+}  
+
+b)	Java Program to find duplicate characters in a String
+public class DuplicateCharacters {  
+public static void main(String[] args) {  
+        String string1 = "Great responsibility";  
+        int count;
+        char string[] = string1.toCharArray();  
+        System.out.println("Duplicate characters in a given string: "); 
+        for(int i = 0; i <string.length; i++) {  
+            count = 1;  
+            for(int j = i+1; j <string.length; j++) {  
+                if(string[i] == string[j] && string[i] != ' ') {  
+                    count++;  
+                    string[j] = '0';  
+                }  
+            }  
+            if(count > 1 && string[i] != '0')  
+                System.out.println(string[i]);  
+        }  
+    }  
+}  
+c)	Java Program to check Palindrome String using Stack, Queue, For and While loop
+import java.util.Stack;
+import java.util.Scanner;
+class PalindromeTest {
+
+    public static void main(String[] args) {
+
+    	System.out.print("Enter any string:");
+        Scanner in=new Scanner(System.in);
+        String inputString = in.nextLine();
+        Stack stack = new Stack();
+
+        for (int i = 0; i < inputString.length(); i++) {
+            stack.push(inputString.charAt(i));
+        }
+
+        String reverseString = "";
+
+        while (!stack.isEmpty()) {
+            reverseString = reverseString+stack.pop();
+        }
+
+        if (inputString.equals(reverseString))
+            System.out.println("The input String is a palindrome.");
+        else
+            System.out.println("The input String is not a palindrome.");
+
+    }
+}
+
+d)	Java Program to sort strings in alphabetical order
+// Java Program to Sort Names in an Alphabetical Order
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args)
+	{
+		int n = 4;
+		String names[]
+			= { "Saadiya", "Shannu", "Saahil", "Sonu" };
+		String temp;
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				if (names[i].compareTo(names[j]) > 0) {
+					// swapping
+					temp = names[i];
+					names[i] = names[j];
+					names[j] = temp;
+				}
+			}
+		}
+		System.out.println(
+			"The names in alphabetical order are: ");
+		for (int i = 0; i < n; i++) {
+			System.out.println(names[i]);
+		}
+	}
+}
+
+
+e)	Java Program to reverse words in a String
+import java.util.Scanner;
+ 
+public class reverse {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("enter string : ");
+ 
+        String originalStr = scanner.nextLine();
+        scanner.close();
+ 
+        String words[] = originalStr.split("\\s");
+        String reversedString = "";
+ 
+        for (int i = 0; i < words.length; i++) 
+        {
+            String word = words[i];
+            String reverseWord = "";
+            for (int j = word.length() - 1; j >= 0; j--) {
+                reverseWord = reverseWord + word.charAt(j);
+            }
+            reversedString = reversedString + reverseWord + " ";
+        }
+        System.out.print("Reversed string : " + reversedString);
+    }
+}
+
+
+f)	Java Program to perform bubble sort on Strings
+public class BubbleSort {  
+    static void bubbleSort(int[] arr) {  
+        int n = arr.length;  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){ if(arr[j-1] > arr[j]){   
+                                 temp = arr[j-1];  
+                                 arr[j-1] = arr[j];  
+                                 arr[j] = temp;  
+                         }}}}  
+    public static void main(String[] args) {  
+                int arr[] ={5,76,65,23,42,15};  
+                  
+                System.out.println("Before Sorting:");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+                System.out.println();  
+                   
+                bubbleSort(arr);
+                  
+                System.out.println("After Sorting:");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }}} 
+
+
+
+g)	Java program to find occurrence of a character in a String
+class Occurence {  
+
+   static void countEachChar(String str) 
+   { 
+	int counter[] = new int[256];
+	int len = str.length(); 
+	for (int i = 0; i < len; i++) 
+		counter[str.charAt(i)]++; 
+	char array[] = new char[str.length()]; 
+        for (int i = 0; i < len; i++) { 
+	   array[i] = str.charAt(i); 
+	   int flag = 0; 
+	   for (int j = 0; j <= i; j++) { 
+		if (str.charAt(i) == array[j])  
+			flag++;                 
+	   } 
+
+	   if (flag == 1)  
+	      System.out.println("Occurrence of char " + str.charAt(i)
+		 + " is:" + counter[str.charAt(i)]);             
+	} 
+   } 
+   public static void main(String[] args) 
+   {  
+	String str = "JavaProgramming"; 
+	countEachChar(str); 
+   } 
+}
+
+
+
+h)	Java program to count vowels and consonants in a String
+public class CountVowelConsonant {    
+    public static void main(String[] args) {      
+        int vCount = 0, cCount = 0;     
+        String str = "This is a really simple sentence";    
+        str = str.toLowerCase();    
+            
+        for(int i = 0; i < str.length(); i++) {     
+            if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {    
+                 
+                vCount++;    
+            }    
+           
+            else if(str.charAt(i) >= 'a' && str.charAt(i)<='z') {      
+                
+                cCount++;    
+            }    
+        }    
+        System.out.println("Number of vowels: " + vCount);    
+        System.out.println("Number of consonants: " + cCount);    
+    }   
+
+ 
+3. JAVA ARRAYS PROGRAMS:
+
+a)	Java Program to Calculate average of numbers using Array
+class average
+{
+  public static void main(String arg[])	
+ {
+   int n=5,result=0;
+ 
+   int a[]=new int[5];
+ 
+   a[0]=10;
+ 
+   a[1]=20;
+ 
+   a[2]=30;
+ 
+   a[3]=40;
+ 
+   a[4]=50;
+	    
+   for(int i=0;i<n;i++)
+    result=result+a[i];
+ 	 	    
+   System.out.println("average of  ("+a[0]+","+a[1]+","+a[2]+","+a[3]+","+a[4]+")  is ="+result/n);
+ 
+ }
+}
+
+
+
+b)	Java Program to Add the elements of an Array
+class SumOfArray{
+   public static void main(String args[]){
+      int[] array = {10, 20, 30, 40, 50, 10};
+      int sum = 0;
+      //Advanced for loop
+      for( int num : array) {
+          sum = sum+num;
+      }
+      System.out.println("Sum of array elements is:"+sum);
+   }
+}
+
+
+c)	Java Program to reverse an array
+public class ReverseArray {  
+    public static void main(String[] args) {  
+        //Initialize array  
+        int [] arr = new int [] {1, 2, 3, 4, 5};  
+        System.out.println("Original array: ");  
+        for (int i = 0; i < arr.length; i++) {  
+            System.out.print(arr[i] + " ");  
+        }  
+        System.out.println();  
+        System.out.println("Array in reverse order: ");  
+        //Loop through the array in reverse order  
+        for (int i = arr.length-1; i >= 0; i--) {  
+            System.out.print(arr[i] + " ");  
+        }  
+    }  
+}  
+
+
+d)	Java Program to sort an array in ascending order
+public class SortAsc {    
+    public static void main(String[] args) {       
+        int [] arr = new int [] {5, 2, 8, 7, 1};     
+        int temp = 0;     
+        System.out.println("Elements of original array: ");    
+        for (int i = 0; i < arr.length; i++) {     
+            System.out.print(arr[i] + " ");    
+        }    
+        for (int i = 0; i < arr.length; i++) {     
+            for (int j = i+1; j < arr.length; j++) {     
+               if(arr[i] > arr[j]) {    
+                   temp = arr[i];    
+                   arr[i] = arr[j];    
+                   arr[j] = temp;    
+               }     
+            }     
+        }    
+          
+        System.out.println();    
+            
+        
+        System.out.println("Elements of array sorted in ascending order: ");    
+        for (int i = 0; i < arr.length; i++) {     
+            System.out.print(arr[i] + " ");    
+        }    
+    }    
+}
+
+
+e)	Java Program to convert char Array to String
+class Main
+{
+    public static void main(String[] args)
+    {
+        char[] charArray = { 'J', 'a', 'v', 'a' };
+ 
+        String str = new String(charArray);
+        System.out.println(str);
+    }
+}
+
+
+
+5) Write a Java program that implements a multi-thread application that has three threads. 
+First thread generates random integer every 1 second and if the value is even, 
+second thread computes the square of the number and prints. If the value is odd, the 
+third thread will print the value of cube of the number.
+import java.util.*;
+class Even implements Runnable {
+public int x;
+public Even(int x) {
+this.x = x;
+}
+public void run() {
+System.out.println("New Thread "+ x +" is EVEN and Square of " + x + " is: " + x * x);
+}
+}
+class Odd implements Runnable{
+public int x;
+public Odd(int x){
+this.x = x;
+}
+public void run(){
+System.out.println("New Thread "+ x +" is ODD and Cube of " + x + " is: " + x * x * x);
+}
+}
+class A extends Thread {
+public void run() {
+int num = 0;
+    Random r = new Random();
+    try {
+        for (int i = 0; i< 5; i++)        {
+num = r.nextInt(100);
+System.out.println("Main Thread and Generated Number is " + num);
+                if (num % 2 == 0){
+                            Thread t1 = new Thread(new Even(num));
+                            t1.start();
+                            } else {
+                            Thread t2 = new Thread(new Odd(num));
+                            t2.start();
+                            }
+Thread.sleep(1000);
+System.out.println("--------------------------------------");
+                }
+        }catch (Exception ex) {
+System.out.println(ex.getMessage());
+         }
+}
+}
+public class MultiThreadApplication {
+public static void main(String[] args) {
+        A a = new A();
+a.start();
+}
+}
+
+
+
+6) Write a Java program for the following:
+i) Create a doubly linked list of elements.
+ii) Delete a given element from the above list.
+iii) Display the contents of the list after deletion
+
+import java.io.*;
+import java.util.Scanner;
+
+class linkedlist {
+	int data;
+	linkedlist prev;
+	linkedlist next;
+
+	linkedlist(int value) {
+		this.data = value;
+	}
+
+	void display() {
+		System.out.println(data);
+	}
+}
+
+class linked {
+	public linkedlist fstnode, lastnode;
+
+	linked() {
+		fstnode = null;
+		lastnode = null;
+	}
+	
+	/* Insert node at the beginning or create linked list */
+	void insert_front(int value) {
+		linkedlist node = new linkedlist(value);
+		if(fstnode == null) {
+			node.prev = node.next = null;
+			fstnode = lastnode = node;
+			System.out.println("Lined list created successfully!");
+		}
+		else {
+			node.prev = null;
+			node.next = fstnode;
+			fstnode.prev = node;
+			fstnode = node;
+			System.out.println("Node Inserted at the front of the Linked list!");
+		}
+	}
+
+	/* Insert node at the end or create linked list */
+	void insert_end(int value) {
+		linkedlist node = new linkedlist(value);
+		if(fstnode == null) {
+			node.prev = node.next = null;
+			fstnode = lastnode = node;
+			System.out.println("Lined list created successfully!");
+		}
+		else {
+			node.next = null;
+			node.prev = lastnode;
+			lastnode.next = node;
+			lastnode = node;			
+			System.out.println("Node Inserted at the end of the Linked list!");
+		}
+	}
+
+	/* Delete node from linked list */
+	void delete() {
+		int count = 0, number, i;
+		linkedlist node, node1, node2;
+		Scanner input = new Scanner(System.in);
+		
+		for(node = fstnode; node != null; node = node.next)
+			count++;
+		display();
+		node = node1 = node2 = fstnode;
+		System.out.println(count+" nodes available here!");
+System.out.println("Enter the node number which you want to delete from ascending order list:");
+		number = Integer.parseInt(input.nextLine());
+		if(number != 1) {
+			if(number < count && number > 0) {
+				for(i = 2; i<= number; i++)
+					node = node.next;
+				for(i = 2; i<= number-1; i++)
+					node1 = node1.next;
+				for(i = 2; i<= number+1; i++)
+					node2 = node2.next;
+				node2.prev = node1;
+				node1.next = node2;
+				node.prev = null;
+				node.next = null;
+				node = null;
+			}
+			else if(number == count) {
+				node = lastnode;
+				lastnode = node.prev;
+				lastnode.next = null;
+				node = null;
+			}
+			else
+				System.out.println("Invalid node number!\n");
+		}
+		else {
+			node = fstnode;
+			fstnode = node.next;
+			fstnode.prev = null;
+			node = null;
+		}
+
+		System.out.println("Node has been deleted successfully!\n");
+	}
+
+	/* Display linked list */
+	void display() {
+		linkedlist node = fstnode;
+		System.out.println("List of node in Ascending order!");
+		while(node != null) {
+			node.display();
+			node = node.next;
+		}
+
+		node = lastnode;
+		System.out.println("List of node in Descending order!");
+		while(node != null) {
+			node.display();
+			node = node.prev;
+		}
+	}
+}
+
+public class doublylinkedlist {
+
+	public static void main(String[] args) {
+		linked list = new linked();
+		Scanner input = new Scanner(System.in);
+		int op = 0;
+		while(op != 5) {
+	System.out.println("1. Insert at front 2. Insert at back 3. Delete 4. Display 5. Exit");
+			System.out.println("Enter your choice:");
+			op = Integer.parseInt(input.nextLine());
+			switch(op) {
+				case 1:
+				System.out.println("Enter the positive value for Linked list:");
+					list.insert_front(Integer.parseInt(input.nextLine()));
+					break;
+				case 2:
+				System.out.println("Enter the positive value for Linked list:");
+					list.insert_end(Integer.parseInt(input.nextLine()));
+					break;
+				case 3:
+					list.delete();
+					break;
+				case 4:
+					list.display();
+					break;
+				case 5:
+					System.out.println("Bye Bye!");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Invalid choice!");
+
+			}
+		}
+
+
+	}
+
+}
+
+
+8) Write a Java program to create an abstract class named Shape that contains two integers and an empty 
+method named print Area (). Provide three classes named Rectangle, Triangle, 
+and Circle such that each one of the classes extends the class Shape.
+ Each one of the classes contains only the method print Area () that prints the area of the given shape.
+
+
+import java.util.*;
+abstract class Shape {
+public int x,y;
+public abstract void printArea();
+}
+class Rectangle extends Shape {
+public void printArea() {
+    float area;
+    area= x * y;
+System.out.println("Area of Rectangle is " +area);
+}
+}
+class Triangle extends Shape {
+public void printArea(){
+    float area;
+    area= (x * y) / 2;
+System.out.println("Area of Triangle is " + area);
+}
+}
+class Circle extends Shape {
+public void printArea(){
+    float area;
+    area=(22 * x * x) / 7;
+System.out.println("Area of Circle is " + area);
+}
+}
+public class MyShapes {
+public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+System.out.println("Enter values : ");
+int x1=sc.nextInt();
+int y1=sc.nextInt();
+        Rectangle r = new Rectangle();
+r.x = x1; 
+r.y = y1;
+r.printArea();
+        Triangle t = new Triangle();
+t.x = x1; 
+t.y = y1;
+t.printArea();
+        Circle c = new Circle();
+c.x = x1;
+ c.printArea();
+    }
+ }
+
+
+
+
+
+
+
+ 
+
+
+
