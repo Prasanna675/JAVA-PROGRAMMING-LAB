@@ -1,0 +1,256 @@
+
+12) Write a Java program that correctly implements the producer – consumer problem using the concept of interthread communication.
+class Thread1
+{
+int n;
+boolean valueset=false;
+synchronized int get()
+{
+if (!valueset)
+try
+{
+wait();
+}
+catch (Exception e)
+{
+System.out.println(“Excepton occur at : “+e);
+}
+System.out.println(“get” +n);
+try
+{
+Thread.sleep(1000);
+}
+catch (Exception e)
+{
+System.out.println(“Excepton occur at : “+e);
+}
+valueset=false;
+notify();
+return n;
+}
+synchronized int put(int n)
+{
+if (valueset)
+try
+{
+wait();
+}
+catch (Exception e)
+{
+System.out.println(“Excepton occur at : “+e);
+}
+this.n=n;
+valueset=true;
+System.out.println(“put”+n);
+try
+{
+Thread.sleep(1000);
+}
+catch (Exception e)
+{
+System.out.println(“Excepton occur at : “+e);
+}
+notify();
+return n;
+}
+}
+class Producer implements Runnable
+{
+Thread1 t;
+Producer(Thread1 t)
+{
+this.t=t;
+new Thread(this,”Producer”).start();
+}
+public void run()
+{
+int i=0;
+while (true)
+{
+t.put(i++);
+}
+}
+}
+class Consumer implements Runnable
+{
+Thread1 t;
+Consumer(Thread1 t)
+{
+this.t=t;
+new Thread(this,”Consumer”).start();
+}
+public void run()
+{
+int i=0;
+while (true)
+{
+t.get();
+}
+}
+}
+class ProducerConsumer
+{
+public static void main(String[] args)
+{
+Thread1 t=new Thread1();
+new Producer(t);
+new Consumer(t);
+System.out.println(“Press Control+c to exit”);
+}
+}
+
+13)Write a Java program to list all the files in a directory including the files present in all its subdirectories.
+import java.io.File;
+
+public class GFG
+{
+	static void RecursivePrint(File[] arr,int index,int level)
+	{
+		if(index == arr.length)
+			return;
+		for (int i = 0; i < level; i++)
+			System.out.print("\t");
+		
+		if(arr[index].isFile())
+			System.out.println(arr[index].getName());
+		
+		else if(arr[index].isDirectory())
+		{
+			System.out.println("[" + arr[index].getName() + "]");
+			RecursivePrint(arr[index].listFiles(), 0, level + 1);
+		}
+		RecursivePrint(arr,++index, level);
+	}
+	
+	public static void main(String[] args)
+	{
+		String maindirpath = "C:\\Users\\prasanna\\Desktop\\Test";
+				
+		File maindir = new File(maindirpath);
+		
+		if(maindir.exists() && maindir.isDirectory())
+		{
+			File arr[] = maindir.listFiles();
+			
+			System.out.println("**********************************************");
+			System.out.println("Files from main directory : " + maindir);
+			System.out.println("**********************************************");
+			RecursivePrint(arr,0,0);
+	}
+	}
+}
+
+
+14) Write a Java program that implements Quick sort algorithm for sorting a list of names in ascending order
+package com.java2novice.sorting; 
+
+public class MyQuickSort { private int array[]; 
+
+private int length; 
+
+public void sort(int[] inputArr) {
+
+ if (inputArr == null || inputArr.length == 0) 
+
+{ return; } 
+
+this.array = inputArr;
+
+ length = inputArr.length; 
+
+quickSort(0, length - 1); }
+
+ private void quickSort(int lowerIndex, int higherIndex)
+
+ { int i = lowerIndex; int j = higherIndex;
+
+int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2]; 
+while (i <=j) 
+
+while (array[i] < pivot) { i++; }
+
+ while (array[j] > pivot) 
+
+{ j--; }
+
+ if (i <= j) { exchangeNumbers(i, j); //move index to next position on both sides 
+
+i++; j--; } }
+
+ if (lowerIndex < j) 
+
+quickSort(lowerIndex, j);
+
+ if (i < higherIndex) 
+
+quickSort(i, higherIndex); } 
+
+private void exchangeNumbers(int i, int j) 
+
+{ int temp = array[i]; array[i] = array[j]; array[j] = temp; } 
+
+public static void main(String a[]){
+
+ MyQuickSort sorter = new MyQuickSort();
+
+ int[] input = {24,2,45,20,56,75,2,56,99,53,12};
+
+ sorter.sort(input); 
+
+for(int i:input){ 
+
+System.out.print(i); 
+
+System.out.print(" "); } } }
+
+
+
+
+15)Write a Java program that implements Bubble sort algorithm for sorting in descending order and also shows the number of interchanges occurred for the given set of integers.
+
+public class BubbleSortDescendingOrder {
+ 
+ public static void main(String[] args) {
+ int intArray[] = new int[]{5,90,35,45,150,3};
+ System.out.println("Array Before Bubble Sort");
+ for(int i=0; i < intArray.length; i++){
+ System.out.print(intArray[i] + " ");
+ }
+ bubbleSort(intArray);
+ 
+ System.out.println("");
+ System.out.println("Array After Bubble Sort");
+ for(int i=0; i < intArray.length; i++){
+ System.out.print(intArray[i] + " ");
+ }
+ 
+ }
+ 
+ private static void bubbleSort(int[] intArray) {
+ 
+ int n = intArray.length;
+ int temp = 0;
+ 
+ for(int i=0; i < n; i++){
+ for(int j=1; j < (n-i); j++){
+ 
+ if(intArray[j-1] < intArray[j]){
+ //swap the elements!
+ temp = intArray[j-1];
+ intArray[j-1] = intArray[j];
+ intArray[j] = temp;
+ }
+ 
+ }
+ }
+ 
+ }
+}
+
+
+
+
+ 
+
+
+ 
